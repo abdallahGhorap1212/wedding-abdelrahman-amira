@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gulzar&family=Mirza:wght@600;700&family=Readex+Pro:wght@300;400;500;600&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=5">
 <script>document.documentElement.className += ' js';</script>
 </head>
 <body>
@@ -94,24 +94,27 @@
   <!-- ── كارت الدعوة ── -->
   <section class="sec" id="invite">
     <article class="card reveal">
-      <svg class="corner"><use href="#corner"/></svg><svg class="corner"><use href="#corner"/></svg>
-      <svg class="corner"><use href="#corner"/></svg><svg class="corner"><use href="#corner"/></svg>
+      <svg class="card-wm" viewBox="0 0 100 100" aria-hidden="true"><use href="#star"/></svg>
+      <svg class="card-apex" viewBox="0 0 100 100" aria-hidden="true"><use href="#star"/></svg>
+      <svg class="corner c-br" aria-hidden="true"><use href="#corner"/></svg>
+      <svg class="corner c-bl" aria-hidden="true"><use href="#corner"/></svg>
 
       <p class="guest js-to" id="guestLine" hidden></p>
-      <svg class="card-orn" viewBox="0 0 100 100" aria-hidden="true"><use href="#star"/></svg>
-      <p class="lead">يتشرف</p>
-      <ul class="parents">
-        <li><small>الأستاذ</small>أحمد الطنطاوي الجالي</li>
-        <li><small>والأستاذ</small>وليد عبدالله تويج</li>
-      </ul>
-      <p class="lead">بدعوة سيادتكم لحضور حفل زفاف نجليهما</p>
+      <p class="c-yat">يتشرف</p>
+      <div class="fathers">
+        <div><small>والد العريس</small><strong><em>الأستاذ</em>أحمد الطنطاوي الجالي</strong></div>
+        <i aria-hidden="true"></i>
+        <div><small>والد العروسة</small><strong><em>الأستاذ</em>وليد عبدالله تويج</strong></div>
+      </div>
+      <p class="c-invite">بدعوة سيادتكم لحضور حفل زفاف نجليهما</p>
 
       <div class="couple">
-        <div class="person"><small>المهندس</small><b class="nm foil">عبدالرحمن</b></div>
-        <div class="knot" aria-hidden="true"><i></i><svg viewBox="0 0 100 100"><use href="#star"/></svg><i></i></div>
-        <div class="person"><small>الآنسة</small><b class="nm foil">أميرة</b></div>
+        <div class="person"><small>المهندس</small><b class="nm">عبدالرحمن</b></div>
+        <svg class="rings" viewBox="0 0 64 30" aria-hidden="true"><circle cx="25" cy="15" r="11"/><circle cx="39" cy="15" r="11"/></svg>
+        <div class="person"><small>الآنسة</small><b class="nm">أميرة</b></div>
       </div>
-      <p class="lead soft">وذلك بمشيئة الله تعالى</p>
+      <div class="rule" aria-hidden="true"><i></i><svg viewBox="0 0 100 100"><use href="#star"/></svg><i></i></div>
+      <p class="c-end">وذلك بمشيئة الله تعالى</p>
     </article>
   </section>
 
@@ -192,6 +195,6 @@
 </button>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="script.js?v=3"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>

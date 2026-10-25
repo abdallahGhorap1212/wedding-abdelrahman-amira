@@ -208,7 +208,7 @@
   audio.volume = 0;
   audio.src = TRACKS[0];
 
-  var idx = 0, fadeTimer = null, gapTimer = null;
+  var idx = 0, userToggled = false, fadeTimer = null, gapTimer = null;
   var altTried = false, shouldPlay = false;
 
   audio.addEventListener('ended', function () {
@@ -268,6 +268,7 @@
   }
 
   btn.addEventListener('click', function () {
+    userToggled = true;
     if (audio.paused) { play();  try { localStorage.setItem(KEY, 'on');  } catch (e) {} }
     else              { stop();  try { localStorage.setItem(KEY, 'off'); } catch (e) {} }
   });
@@ -276,8 +277,28 @@
     try { return localStorage.getItem(KEY) !== 'off'; } catch (e) { return true; }
   }
 
-  // البوابة بتنادي دي مع أول ضغطة — المتصفحات بتمنع الصوت قبل أي تفاعل
-  window.__weddingPlay = function () { if (wanted()) play(); };
+  // المتصفحات بتمنع الصوت قبل أول تفاعل — بنفضل مستنيين ونشغّل مع أول لمسة
+  var EVS = ['pointerdown', 'mousedown', 'touchstart', 'touchend', 'keydown', 'click', 'wheel', 'scroll'];
+  function disarm() {
+    EVS.forEach(function (e) { window.removeEventListener(e, tryStart); });
+    document.removeEventListener('visibilitychange', onVisible);
+  }
+  function tryStart() {
+    if (userToggled || !wanted()) { disarm(); return; }
+    if (!audio.paused) { disarm(); return; }
+    shouldPlay = true;
+    var p = audio.play();
+    if (p && p.then) p.then(function () { fadeTo(TARGET_VOL); disarm(); }).catch(function () {});
+    else { fadeTo(TARGET_VOL); disarm(); }
+  }
+  function onVisible() { if (!document.hidden) tryStart(); }
+  EVS.forEach(function (e) { window.addEventListener(e, tryStart, { passive: true }); });
+  document.addEventListener('visibilitychange', onVisible);
+
+  // فتح الباب بيشغّل الأغاني دايمًا — زي دعوة عبدالله وخلود
+  window.__weddingPlay = function () { userToggled = true; play(); };
 
   setUI(false);
+  tryStart();
+  window.addEventListener('load', tryStart);
 })();
