@@ -4,17 +4,17 @@ PRODID:-//Abdelrahman & Amira//Wedding//AR
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:henna-abdelrahman-amira-20261029@github.io
+UID:henna-amira-20261029@github.io
 DTSTAMP:20261025T120000Z
 DTSTART:20261029T163000Z
 DTEND:20261029T203000Z
-SUMMARY:حنة العريس عبدالرحمن
+SUMMARY:حنة العروسة أميرة
 DESCRIPTION:بعد صلاة العشاء — يسعدنا حضوركم
 LOCATION:قاعة الريان - أويش الحجر
 BEGIN:VALARM
 TRIGGER:-P1D
 ACTION:DISPLAY
-DESCRIPTION:بكرة حنة العريس عبدالرحمن
+DESCRIPTION:بكرة حنة العروسة أميرة
 END:VALARM
 END:VEVENT
 END:VCALENDAR

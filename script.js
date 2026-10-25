@@ -5,7 +5,7 @@
   // «بعد صلاة العشاء» ≈ ٦:٢٠ م بالتوقيت الشتوي — الصيفي بيخلص ليلة الخميس ٢٩/١٠،
   // فالموعدين نفس اللحظة بالـ UTC (٤:٣٠ م).
   var EVENTS = [
-    { key: 'henna',   label: 'حنة العريس',  title: 'حنة العريس عبدالرحمن',
+    { key: 'henna',   label: 'حنة العروسة', title: 'حنة العروسة أميرة',
       start: new Date('2026-10-29T19:30:00+03:00'), place: 'قاعة الريان - أويش الحجر' },
     { key: 'wedding', label: 'حفل الزفاف', title: 'حفل زفاف عبدالرحمن وأميرة',
       start: new Date('2026-10-31T18:30:00+02:00'), place: 'قاعة بالميرا - صينية ميت خميس، أمام لادولشي فيتا' }
@@ -126,9 +126,10 @@
   var cdLabel = document.getElementById('cdLabel');
   function pad(n) { return n < 10 ? '0' + n : String(n); }
   function tick() {
+    // العداد على ميعاد الفرح بس
     var now = Date.now();
-    var next = EVENTS.filter(function (e) { return e.start.getTime() > now; })[0];
-    if (!next) {
+    var wedding = EVENTS[1];
+    if (wedding.start.getTime() <= now) {
       document.getElementById('timer').hidden = true;
       cdLabel.hidden = true;
       var done = document.getElementById('timerDone');
@@ -137,8 +138,7 @@
       clearInterval(timer);
       return;
     }
-    cdLabel.textContent = 'باقي على ' + next.label;
-    var s = Math.floor((next.start.getTime() - now) / 1000);
+    var s = Math.floor((wedding.start.getTime() - now) / 1000);
     var vals = [Math.floor(s / 86400), Math.floor(s / 3600) % 24, Math.floor(s / 60) % 60, s % 60];
     flaps.forEach(function (f, i) { f.set(ar(pad(vals[i]))); });
   }
@@ -171,7 +171,7 @@
   var btnShare = document.getElementById('btnShare');
   var link = location.origin + location.pathname;
   var text = 'دعوة زفاف عبدالرحمن وأميرة 🤍\n' +
-    'حنة العريس: الخميس ٢٩ أكتوبر — قاعة الريان، أويش الحجر\n' +
+    'حنة العروسة: الخميس ٢٩ أكتوبر — قاعة الريان، أويش الحجر\n' +
     'حفل الزفاف: السبت ٣١ أكتوبر — قاعة بالميرا، صينية ميت خميس\n' +
     'بعد صلاة العشاء\n' + link;
   btnShare.href = 'https://wa.me/?text=' + encodeURIComponent(text);
